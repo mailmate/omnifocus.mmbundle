@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>zz-ohaqyrf@sereba.pbz</string>
+	<key>contactName</key>
+	<string>Benny Kjær Nielsen</string>
+	<key>description</key>
+	<string>Integration with task manager OmniFocus.</string>
+	<key>name</key>
+	<string>OmniFocus</string>
+	<key>uuid</key>
+	<string>55916D71-E8D9-4C39-A440-56A8B4A03CAA</string>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+#!/usr/bin/ruby -w
+# encoding: UTF-8
+
+require 'cgi'
+require 'tempfile'
+
+tmpfile = Tempfile.new('add_input')
+begin
+
+  # Create temporary file (don't use this execution style if user input is involved)
+  tmpfilename = tmpfile.path
+
+  # First line is used as the name of the task
+  tmpfile.puts(ENV['MM_SUBJECT'])
+
+  # The rest is the note
+  tmpfile.puts("Email: message://%3c" + CGI::escape(ENV['MM_MESSAGE_ID']) + "%3e")
+
+  canonical = $stdin.read
+  if !canonical.empty?
+    tmpfile.puts("")
+    tmpfile.puts("From: " + ENV['MM_FROM'])
+    tmpfile.puts("Subject: " + ENV['MM_SUBJECT'])
+    tmpfile.puts("")
+    tmpfile.write(canonical)
+  end
+
+  tmpfile.close
+
+  # Use AppleScript to communicate with the application
+  system("osascript", ENV['MM_BUNDLE_SUPPORT'] + "/bin/create_task.scpt", tmpfilename)
+  # system(ENV['MM_BUNDLE_SUPPORT'] + "/bin/create_task", tmpfilename)
+
+ensure
+   tmpfile.close
+   tmpfile.unlink   # deletes the temp file
+end
