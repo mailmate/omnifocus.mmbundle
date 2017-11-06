@@ -14,7 +14,7 @@ begin
   tmpfile.puts(ENV['MM_SUBJECT'])
 
   # The rest is the note
-  tmpfile.puts("Email: message://%3c" + CGI::escape(ENV['MM_MESSAGE_ID']) + "%3e")
+  tmpfile.puts("Email: <message:%3c" + ENV['MM_MESSAGE_ID'] + "%3e>")
 
   canonical = $stdin.read
   if !canonical.empty?
